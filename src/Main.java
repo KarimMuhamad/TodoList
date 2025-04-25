@@ -128,7 +128,7 @@ public class Main {
             if(inp.equals("1")) {
                 viewShowAddTodo();
             } else if(inp.equals("2")) {
-                vewRemoveTodo();
+                viewRemoveTodo();
             } else if(inp.equals("3")) {
                 System.out.println("Terima kasih");
                 System.exit(0);
@@ -156,7 +156,7 @@ public class Main {
     /**
      * Menampilkan view Remove Todo
      */
-    public static void vewRemoveTodo() {
+    public static void viewRemoveTodo() {
         System.out.println("======== DELETE TODO ========");
         var inp = userInput("Nomor yang dihapus (x Jika batal)");
 
