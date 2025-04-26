@@ -2,7 +2,7 @@ package entity;
 
 public class TodoList {
 
-  private String todo;
+  public String todo;
 
   public TodoList() {
   }
