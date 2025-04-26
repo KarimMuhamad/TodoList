@@ -1,10 +1,14 @@
+import java.util.Scanner;
+
 public class Main {
 
     public  static  String[] model = new String[10];
 
+    public static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
-        testRemove();
+        viewShowTodo();
 
     }
 
@@ -12,6 +16,7 @@ public class Main {
      *  Menampilkan todo list
      */
     public static void showTodoList() {
+        System.out.println("============ Todolist ============");
         for(var i = 0; i < model.length; i++) {
             var todo = model[i];
             var no = i + 1;
@@ -92,19 +97,45 @@ public class Main {
         addTodoList("coba");
         addTodoList("Coba 2");
         addTodoList("Coba 3");
+        addTodoList("Coba 4");
+        addTodoList("Coba 5");
 
         showTodoList();
-        var result = removeTodoList(2);
+        var result = removeTodoList(4);
 
         System.out.println(result);
 
         showTodoList();
     }
 
+    public static String userInput(String message) {
+        System.out.print(message);
+        return scanner.nextLine();
+    }
+
     /**
      * Menampilkan view Todo
      */
     public static void viewShowTodo () {
+        while(true) {
+            showTodoList();
+            System.out.println("MENU : ");
+            System.out.println("1. Tambah");
+            System.out.println("2. Hapus");
+            System.out.println("3. Keluar");
+
+            String inp = userInput("Pilih menu : ");
+            if(inp.equals("1")) {
+                viewShowAddTodo();
+            } else if(inp.equals("2")) {
+                viewRemoveTodo();
+            } else if(inp.equals("3")) {
+                System.out.println("Terima kasih");
+                System.exit(0);
+            } else {
+                System.out.println("Menu tidak ditemukan");
+            }
+        }
 
     }
 
@@ -112,13 +143,31 @@ public class Main {
      * Menampilkan view add todo
      */
     public static void viewShowAddTodo() {
+        System.out.println("======== ADD TODO ========");
 
+        var inp = userInput("Todo (x Jika batal)");
+        if(inp.equals("x")) {
+
+        } else {
+            addTodoList(inp);
+        }
     }
 
     /**
      * Menampilkan view Remove Todo
      */
-    public static void vewRemoveTodo() {
+    public static void viewRemoveTodo() {
+        System.out.println("======== DELETE TODO ========");
+        var inp = userInput("Nomor yang dihapus (x Jika batal)");
+
+        if(inp.equals("x")) {
+
+        } else {
+            showTodoList();
+            if(!removeTodoList(Integer.valueOf(inp))) {
+                System.out.println("Gagal hapus" + inp);
+            }
+        }
 
     }
 }
